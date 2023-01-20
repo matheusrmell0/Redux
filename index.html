@@ -656,41 +656,39 @@
 
     // Desafio middleware
 
-    import { TOKEN_GET, USER_GET } from './desafio-middleware/api.js'
-    import store from './desafio-middleware/configureStore.js'
-    import { fetch_started, fetch_success, fetch_error} from './desafio-middleware/reducers/stateFetch.js'
-    import { user_started, user_success, user_error } from './desafio-middleware/reducers/stateUser.js'
+    // import { TOKEN_GET, USER_GET } from './desafio-middleware/api.js'
+    // import store from './desafio-middleware/configureStore.js'
+    // import { fetch_started, fetch_success, fetch_error} from './desafio-middleware/reducers/stateFetch.js'
+    // import { user_started, user_success, user_error } from './desafio-middleware/reducers/stateUser.js'
 
-    function fetchUrl(api_post_url, api_post_options) {
-      return async (dispatch) => {
-        try {
-          dispatch(fetch_started())
-          const token = await fetch(api_post_url, api_post_options).then(r => r.json())
-          dispatch(fetch_success(token))
-          if (token.token) {
-            dispatch(user_started())
-            const { api_get_url, api_get_options } = USER_GET(token.token)
-            const user = await fetch(api_get_url, api_get_options).then(r => r.json())
-            dispatch(user_success(user))
-          }
-        } catch (error) {
-          dispatch(fetch_error(error.message))
-          dispatch(user_error(error.message))
-        }
-      }
-    }
+    // function fetchUrl(api_post_url, api_post_options) {
+    //   return async (dispatch) => {
+    //     try {
+    //       dispatch(fetch_started())
+    //       const token = await fetch(api_post_url, api_post_options).then(r => r.json())
+    //       dispatch(fetch_success(token))
+    //       if (token.token) {
+    //         dispatch(user_started())
+    //         const { api_get_url, api_get_options } = USER_GET(token.token)
+    //         const user = await fetch(api_get_url, api_get_options).then(r => r.json())
+    //         dispatch(user_success(user))
+    //       }
+    //     } catch (error) {
+    //       dispatch(fetch_error(error.message))
+    //       dispatch(user_error(error.message))
+    //     }
+    //   }
+    // }
 
-    function render() {
-      const { api_post_url, api_post_options } = TOKEN_GET()
-      if (store.getState().fetchReducer.data === null) {
-        store.dispatch(fetchUrl(api_post_url, api_post_options))
-      }
-    }
-    render()
-
-
-
+    // function render() {
+    //   const { api_post_url, api_post_options } = TOKEN_GET()
+    //   if (store.getState().fetchReducer.data === null) {
+    //     store.dispatch(fetchUrl(api_post_url, api_post_options))
+    //   }
+    // }
+    // render()
   </script>
+  <script type="module" src="./script.js"></script>
 </body>
 
 </html>
